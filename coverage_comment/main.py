@@ -116,11 +116,10 @@ def process_pr(
     git: subprocess.Git,
 ) -> int:
     log.info("Generating comment for PR")
-
     if not config.GITHUB_PR_NUMBER and not config.GITHUB_BRANCH_NAME:
         log.info(
-            "This worflow is not triggered on a pull_request event, "
-            "nor on a push event on a branch. Consequently, there's nothing to do. "
+            "This workflow is not triggered on a [pull_request] event, "
+            "nor on a [push] event on a branch. Consequently, there's nothing to do. "
             "Exiting."
         )
         return 0
@@ -130,7 +129,8 @@ def process_pr(
         coverage_path=config.COVERAGE_PATH,
     )
     base_ref = config.GITHUB_BASE_REF or repo_info.default_branch
-
+    log.info(git)
+    log.info(base_ref)
     added_lines = coverage_module.get_added_lines(git=git, base_ref=base_ref)
     diff_coverage = coverage_module.get_diff_coverage_info(
         coverage=coverage, added_lines=added_lines

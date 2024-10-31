@@ -61,6 +61,7 @@ class Git:
         # or we can always pass an `env` parameter, but in this case, we
         # need to always merge `os.environ` to it (and ensure our variables
         # have precedence)
+        print(args)
         try:
             return run(
                 "git",
