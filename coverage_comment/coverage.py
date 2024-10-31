@@ -292,6 +292,7 @@ def get_added_lines(
     # --unified=0 means we don't get any context lines for chunk, and we
     # don't merge chunks. This means the headers that describe line number
     # are always enough to derive what line numbers were added.
+    print(base_ref)
     git.fetch("origin", base_ref, "--depth=1000")
     diff = git.diff("--unified=0", "FETCH_HEAD", "--", ".")
     return parse_diff_output(diff)
