@@ -51,7 +51,8 @@ def main():
         log.info("Ending action")
         sys.exit(exit_code)
 
-    except Exception:
+    except Exception as e:
+        print(e)
         log.exception(
             "Critical error. This error possibly occurred because the permissions of the workflow are set incorrectly. You can see the correct setting of permissions here: https://github.com/py-cov-action/python-coverage-comment-action#basic-usage\nOtherwise please look for open issues or open one in https://github.com/py-cov-action/python-coverage-comment-action/"
         )
